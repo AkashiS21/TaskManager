@@ -1,8 +1,11 @@
-/*package org.example.taskmanager.Controllers;
+package org.example.taskmanager.Controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.example.taskmanager.models.UserEntity;
-import org.example.taskmanager.services.ServiceImpl.UserServiceImpl;
+import org.example.taskmanager.DTO.Auth.AuthenicationResponse;
+import org.example.taskmanager.DTO.Auth.AuthenticationRequest;
+import org.example.taskmanager.DTO.Auth.RegisterationRequest;
+import org.example.taskmanager.services.ServiceImpl.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/register")
 @RequiredArgsConstructor
 public class AuthController {
-
-    UserServiceImpl userService;
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @PostMapping()
-    public String register(@RequestBody RegisterRequest request ) {
-
+    public ResponseEntity<AuthenicationResponse> register(@RequestBody RegisterationRequest request ) {
+        return ResponseEntity.ok(authenticationService.register(request));
     }
-    @PostMapping()
-    public String register(@RequestBody RegisterRequest request ) {
-
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenicationResponse> register(@RequestBody AuthenticationRequest request ) {
+        return ResponseEntity.ok(authenticationService.authenticate(request));
     }
-}*/
+}
