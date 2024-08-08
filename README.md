@@ -10,6 +10,7 @@ cd task-manager
 Соберите проект
 С Maven:
 mvn clean install
+
 С Gradle:
 gradle build
 
@@ -23,12 +24,15 @@ POST /api/register
   "password": "string",
   "email": "string"
 }
+
+
 Логин
 POST /api/register/authenticate
 {
   "username": "string",
   "password": "string"
 }
+
 
 Задачи:
 Получить все задачи для текущего пользователя
@@ -62,6 +66,8 @@ POST /api/task/createNewTask
   "authorEmail": "string",
   "assigneeEmail": "string"
 }
+
+
 Обновить задачу
 PUT /api/task/updateTask/{id}
 Тело запроса:
@@ -80,6 +86,8 @@ PUT /api/task/updateTask/{id}
   "authorEmail": "string",
   "assigneeEmail": "string"
 }
+
+
 Удалить задачу
 DELETE /api/task/delete/{id}
 Ответ:
@@ -99,6 +107,8 @@ PATCH /api/task/{id}/updateStatus
   "authorEmail": "string",
   "assigneeEmail": "string"
 }
+
+
 Получить задачи по автору
 GET /api/task/tasksByAuthor/{authorEmail}
 Ответ:
@@ -112,6 +122,8 @@ GET /api/task/tasksByAuthor/{authorEmail}
     "assigneeEmail": "string"
   }
 ]
+
+
 Получить задачи по исполнителю
 GET /api/task/taskByAssegnee/{assegneeEmail}
 Ответ:
@@ -125,6 +137,8 @@ GET /api/task/taskByAssegnee/{assegneeEmail}
     "assigneeEmail": "string"
   }
 ]
+
+
 Комментарии
 Получить комментарии для задачи
 GET /api/task/comments/{taskId}
@@ -148,6 +162,9 @@ POST /api/task/comments/createComment/{taskId}
   "content": "string",
   "authorEmail": "string"
 }
+
+
+
 Настройка Docker
 Чтобы запустить приложение в Docker-контейнере:
 Создайте Docker-образ
