@@ -3,6 +3,8 @@
 
 Приложение Task Manager разработано на Java с использованием Spring Boot. Оно предоставляет функциональность для регистрации пользователей, аутентификации, управления задачами и комментариями. Для безопасной аутентификации и авторизации используется JWT.
 Сборка и запуск
+
+
 Клонируйте репозиторий
 git clone [https://github.com/your-repository/task-manager.git](https://github.com/AkashiS21/TaskManager)
 cd task-manager
