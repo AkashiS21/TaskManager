@@ -9,9 +9,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDTO {
-    private Long id;
-    private String text;
+    private String content;
     private LocalDateTime createdAt;
+    private String authorEmail;
     private Long taskId;
-    private Long userId;
 }

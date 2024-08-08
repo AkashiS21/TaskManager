@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.example.taskmanager.models.UserEntity;
 import org.example.taskmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,6 +39,10 @@ public class UserServiceImpl implements UserDetailsService {
 
         userRepository.save(user);
         return user;*/
+    }
+    public UserEntity getCurrentUser() {
+        UserEntity user = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user;
     }
     Optional<UserEntity> findByUsername(String username) {
         return userRepository.findByUsername(username);

@@ -1,5 +1,7 @@
 package org.example.taskmanager.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,10 +28,8 @@ public class UserEntity implements UserDetails{
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "author")
-    private List<Task> authoredTasks;
-
     @ManyToMany(mappedBy = "assignees")
+    @JsonBackReference
     private List<Task> assignedTasks;
 
     @Enumerated(EnumType.STRING)

@@ -1,4 +1,4 @@
-package org.example.taskmanager.Confitg;
+package org.example.taskmanager.Config.CustomFilters;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -9,11 +9,8 @@ import org.example.taskmanager.models.UserEntity;
 import org.example.taskmanager.services.ServiceImpl.JwtService;
 import org.example.taskmanager.services.ServiceImpl.UserServiceImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,8 +18,8 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
-    private UserServiceImpl userService;
-    private final JwtService jwtService;
+    final UserServiceImpl userService;
+    final JwtService jwtService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");

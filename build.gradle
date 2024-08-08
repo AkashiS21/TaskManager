@@ -42,11 +42,16 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+
 
     //JWT
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.5'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.6'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.5'
+
+    //Swagger
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.8.0'
 
 
 

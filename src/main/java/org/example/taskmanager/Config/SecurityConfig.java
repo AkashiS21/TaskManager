@@ -1,22 +1,21 @@
-package org.example.taskmanager.Confitg;
+package org.example.taskmanager.Config;
 
+import org.example.taskmanager.Config.CustomFilters.JwtFilter;
 import org.example.taskmanager.services.ServiceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -52,7 +51,12 @@ public class SecurityConfig {
                     return corsConfiguration;
                 }))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("api/register/**").permitAll()
+                        .requestMatchers("api/register/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/webjars/**"
+                                ).permitAll()
                         .requestMatchers("api/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -69,7 +73,7 @@ public class SecurityConfig {
                         .passwordParameter("password")
                         .defaultSuccessUrl("/")
                 )*/
-                .logout(logout -> logout.logoutSuccessUrl("/register"))
+                .logout(logout -> logout.logoutSuccessUrl(""))
                 .build();
     }
     @Bean

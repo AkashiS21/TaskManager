@@ -27,7 +27,6 @@ public class Comment {
     @JoinColumn(name = "task_id", nullable = false)
     private Task task;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
-    private UserEntity author;
+
+    private String authorMail;
 }

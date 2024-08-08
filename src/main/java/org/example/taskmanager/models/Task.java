@@ -1,5 +1,6 @@
 package org.example.taskmanager.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,9 +32,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private UserEntity author;
+    private String authorEmail;
 
     @ManyToMany
     @JoinTable(
@@ -41,6 +40,7 @@ public class Task {
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @JsonManagedReference
     private List<UserEntity> assignees;
 
     @OneToMany(mappedBy = "task")
