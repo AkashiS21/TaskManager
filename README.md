@@ -18,6 +18,8 @@ gradle build
 Запуск: java -jar build/libs/TaskManager-0.0.1-SNAPSHOT.jar
 
 Регистрация
+
+
 POST /api/register
 Тело запроса:
 {
@@ -36,6 +38,8 @@ POST /api/register/authenticate
 
 
 Задачи:
+
+
 Получить все задачи для текущего пользователя
 GET /api/task
 Ответ:
@@ -49,6 +53,8 @@ GET /api/task
     "assigneeEmail": "string"
   }
 ]
+
+
 Создать новую задачу
 POST /api/task/createNewTask
 Тело запроса:
@@ -58,6 +64,7 @@ POST /api/task/createNewTask
   "status": "string",
   "assigneeEmail": "string"
 }
+
 Ответ:
 {
   "id": 1,
@@ -78,6 +85,7 @@ PUT /api/task/updateTask/{id}
   "status": "string",
   "assigneeEmail": "string"
 }
+
 Ответ:
 {
   "id": 1,
@@ -99,6 +107,7 @@ PATCH /api/task/{id}/updateStatus
 {
   "taskStatus": "string"
 }
+
 Ответ:
 {
   "id": 1,
@@ -157,6 +166,7 @@ POST /api/task/comments/createComment/{taskId}
 {
   "content": "string"
 }
+
 Ответ:
 {
   "id": 1,
