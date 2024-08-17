@@ -6,6 +6,7 @@ import org.example.taskmanager.DTO.Auth.AuthenticationRequest;
 import org.example.taskmanager.DTO.Auth.RegisterationRequest;
 import org.example.taskmanager.models.enums.Role;
 import org.example.taskmanager.models.UserEntity;
+import org.example.taskmanager.services.AuthenticationServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 
-public class AuthenticationService {
+public class AuthenticationService implements AuthenticationServiceInterface {
     private JwtService jwtService;
     private PasswordEncoder passwordEncoder;
     private UserServiceImpl userService;

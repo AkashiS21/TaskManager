@@ -4,12 +4,14 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.example.taskmanager.models.UserEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,15 +20,14 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    private final SecretKey secretKey;
+    @Value("${jwt.secret.key}")
+    private String secretKey;
 
-    public JwtService() {
-        this.secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public Key getSigningKey() {
+        byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    private SecretKey getSigningKey() {
-        return secretKey;
-    }
 
     public String generateToken(UserEntity user) {
         return generateToken(new HashMap<>(), user);
